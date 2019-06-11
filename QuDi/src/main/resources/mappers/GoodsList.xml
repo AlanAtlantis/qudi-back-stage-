@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.GoodsListDao">
+
+	<resultMap type="com.qudi.bean.GoodsList" id="goodsList">
+		<id column="goods_id" property="goodsId" />
+		<result column="category_id" property="categoryId" />
+		<result column="goods_name" property="goodsName" />
+		<result column="goods_as" property="goodsAs" />
+		<result column="goods_label" property="goodsLabel" />
+		<result column="goods_desc" property="goodsDesc" />
+		<result column="goods_price" property="goodsPrice" />
+		<result column="goods_discount" property="goodsDiscount" />
+		<result column="goods_source" property="goodsSource" />
+		<result column="user_id" property="userId" />
+		<result column="goods_status" property="goodsStatus" />
+		<result column="create_time" property="createTime" />
+
+	</resultMap>
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="goodsId"
+		parameterType="com.qudi.bean.GoodsList">
+		insert into
+		goods_list
+		(category_id,goods_name,goods_as,goods_label,goods_desc,goods_price,user_id,goods_source)values(#{categoryId},#{goodsName},#{goodsAs},#{goodsLabel},#{goodsDesc},#{goodsPrice},#{userId},#{goodsSource})
+
+	</insert>
+
+	<select id="selectGoodsList" resultMap="goodsList">
+		select
+		goods_id,category_id,goods_name,goods_as,goods_label,goods_desc,goods_price,goods_discount,goods_source,user_id,goods_status,create_time
+		from goods_list
+	</select>
+
+
+	<insert id="addShop2Goods">
+		insert into shop2_goods (shop_id,goods_id)values(#{shopId},#{goodsId});
+	</insert>
+
+</mapper>
