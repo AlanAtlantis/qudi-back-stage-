@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.SysUserDao">
+
+	<select id="sysuserName" resultType="com.qudi.bean.SysUser">
+		select username from where
+		id=#{id}
+	</select>
+
+	<!-- 后台用户登录方法 -->
+	<select id="login_sysuser" resultType="com.qudi.bean.SysUser">
+		select
+		id,usertype,username,password,level,sex,phone,email,notdel,birthday,address,remarks,status,createuser,
+		createdate,updauser,updadate from sys_user
+		<where>
+			<if test="username!=null">
+				username=#{username} and password=#{password}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 后台用户添加方法 -->
+	<insert id="register_sysuser"
+		parameterType="com.qudi.bean.SysUser">
+		insert into sys_user
+		(username,password,phone,email)
+		values(#{username},#{password},#{phone},#{email})
+	</insert>
+
+	<!--后台用户信息修改 -->
+	<update id="update_sysuser"
+		parameterType="com.qudi.bean.SysUser">
+		update sys_user
+		<set>
+			<if test="password!=null">password=#{password},</if>
+			sex=#{sex},
+			<if test="phone!=null">phone=#{phone},</if>
+			<if test="email!=null">email=#{email},</if>
+			birthday=#{birthday},
+			address=#{address},
+			remarks=#{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 查询用户名是否存在 -->
+	<select id="checkusername_sysuser"
+		resultType="com.qudi.bean.SysUser">
+		select id from sys_user
+		where username=#{username}
+	</select>
+
+	<!-- 查询电话号码是否存在 -->
+	<select id="checkphone_sysuser" parameterType="int"
+		resultType="java.util.HashMap">
+		select id,phone from sys_user
+		<where>
+			<if test="id==0">phone=#{phone} 
+			</if>
+			<if test="id!=0">phone=#{phone} and id!=#{id}
+            </if>
+		</where>
+	</select>
+
+
+<!-- 查询用户订单信息 -->
+	<select id="thequery_show" parameterType="int"
+		resultType="java.util.HashMap">
+ select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks from
+ order_info
+		where
+		userid=#{userid}
+	</select>
+
+<!-- 查询用户订单信息 -->
+	<select id="thequery_theorder" parameterType="int"
+		resultType="java.util.HashMap">
+ select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks,userid from
+ order_info
+			<where>
+			<if test="userid!=null">
+			 orderid=#{orderid} and userid=#{userid} 
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.GoodsImgDao">
+
+	<resultMap type="com.qudi.bean.GoodsImg" id="goodsImg">
+		<id column="pic_id" property="picId" />
+		<result column="goods_id" property="goodsId" />
+		<result column="pic_url" property="picUrl" />
+		<result column="pic_sort" property="picSort" />
+		<result column="is_main" property="isMain" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="picId">
+		<result column="pic_id" />
+	</resultMap>
+
+	<insert id="addGoodsImg" parameterType="com.qudi.bean.GoodsImg">
+		insert into goods_img
+		(goods_id,pic_url,pic_sort,is_main)values(#{goodsId},#{picUrl},#{picSort},#{isMain})
+	</insert>
+
+	<select id="selectGoodsImg" resultMap="goodsImg">
+		select
+		pic_id,create_time,goods_id,pic_url,pic_sort,is_main from goods_img
+		where goods_id=#{goodsId}
+	</select>
+
+	<update id="updateImg">
+		update goods_img set
+		pic_url=#{picUrl},pic_sort=#{picSort},is_main=#{isMain} where
+		pic_id=#{picId}
+	</update>
+
+	<delete id="deleteImg">
+		delete from goods_img where pic_id=#{picId}
+	</delete>
+
+	<update id="updateMian">
+		update goods_img set is_main=#{isMain} where
+		pic_id=#{picId}
+	</update>
+
+	<select id="queryIsMain" resultMap="picId">
+		select pic_id from goods_img where goods_id=#{goodsId} and is_main=1
+	</select>
+
+</mapper>

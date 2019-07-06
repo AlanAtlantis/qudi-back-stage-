@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.GoodsBargainingDao">
+
+	<resultMap type="com.qudi.bean.GoodsBargaining"
+		id="goodsBargaining">
+		<id column="bargaining_id" property="bargainingId" />
+		<result column="bargaining_price" property="bargainingPrice" />
+		<result column="price_type" property="priceType" />
+		<result column="user_id" property="userId" />
+		<result column="goods_id" property="goodsId" />
+		<result column="bargaining_remark" property="bargainingRemark" />
+		<result column="create_time" property="createTime" />
+		<result column="bargaining_status" property="bargainingStatus" />
+		<result column="number" property="number"/>
+	</resultMap>
+
+	<select id="queryBar" resultMap="goodsBargaining">
+		select
+		bargaining_id,bargaining_price,price_type,user_id,goods_id,number,bargaining_remark,create_time,bargaining_status
+		from goods_bargaining where goods_id=#{goodsId}
+	</select>
+
+	<update id="updatebar">
+		update goods_bargaining set
+		bargaining_status=#{bargainingStatus} where
+		bargaining_id=#{bargainingId}
+	</update>
+
+
+
+</mapper>
