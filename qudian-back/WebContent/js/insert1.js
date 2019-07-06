@@ -28,6 +28,33 @@ $(document).ready(
 				}
 			})
 
+		/*	$.ajax({
+				type : "GET",
+				dataType : "json",
+				url : "/goodsCategory/selectGoodsCategory",
+				success : function(data) {
+					if (data.result == "SUCCEED") {
+						console.log(data);
+						if (data.object != null) {
+							for ( var i in data.object) {
+								$("#exampleSelect1").append(
+										"<option value='id="
+												+ data.object[i].categoryId
+												+ "&categoryLevel="
+												+ data.object[i].categoryLevel
+												+ "'>"
+												+ data.object[i].categoryName
+												+ "</option>");
+							}
+
+						}
+
+					} else {
+						toastr.error(data.info);
+					}
+				}
+			})
+*/
 		})
 
 $("#but").click(function() {

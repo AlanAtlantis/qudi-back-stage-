@@ -23,12 +23,12 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	@Autowired
 	private GoodsListDao goodsListDao;
 
-	public MessageUtil add(GoodsList goods) {
+	public MessageUtil add(GoodsList goods, int shopId) {
 		MessageUtil message = new MessageUtil();
 		if (goods != null) {
 
 			if (goodsListDao.add(goods) > 0) {
-				goodsListDao.addShop2Goods(1, goods.getGoodsId());
+				goodsListDao.addShop2Goods(shopId, goods.getGoodsId());
 				message.setInfo("successfully added");
 				message.setResult(Result.SUCCEED);
 				return message;
@@ -69,7 +69,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 
 		if (status > 0) {
 
-			// ÅÐ¶ÏÊÇ·ñÐÞ¸Ä³É¹¦
+			// ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Þ¸Ä³É¹ï¿½
 			if (goodsListDao.goodsShelves(status, goodsId) > 0) {
 				message.setResult(Result.SUCCEED);
 				message.setInfo("goods status modified successfully");
@@ -88,7 +88,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	public MessageUtil updateGoods(GoodsList goodsList) {
 		MessageUtil message = new MessageUtil();
 		if (goodsList != null) {
-			// ¸ü¸ÄÉÌÆ·ÐÅÏ¢
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
 			if (goodsListDao.updateGoods(goodsList) > 0) {
 				message.setResult(Result.SUCCEED);
 				message.setInfo("Modify the success");
@@ -107,7 +107,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	public MessageUtil selectGoodsId(int goodsId) {
 		MessageUtil message = new MessageUtil();
 		if (goodsId > 0) {
-			// ²éÑ¯
+			// ï¿½ï¿½Ñ¯
 			GoodsList goods = goodsListDao.selectGoodsId(goodsId);
 			if (goods != null) {
 				message.setObject(goods);
@@ -125,7 +125,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	@Override
 	public MessageUtil goodsCategory(int userId) {
 		MessageUtil message = new MessageUtil();
-		// ²éÑ¯¿â´æÉÌÆ·
+		// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 		List<GoodsList> goods = goodsListDao.goodsCategory(userId);
 		if (goods.size() > 0) {
 			message.setObject(goods);

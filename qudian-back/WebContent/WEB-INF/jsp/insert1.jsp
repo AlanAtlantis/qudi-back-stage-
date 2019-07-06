@@ -71,110 +71,7 @@
 				</div>
 				<ul
 					class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-					<!-- Expand-->
-					<!-- <li class="nav-item d-flex align-items-center full_scr_exp"><a
-						class="nav-link" href="#"><img src="img/expand.png"
-							onclick="toggleFullScreen(document.body)" class="img-fluid"
-							alt=""></a></li> -->
-					<!-- Search-->
-					<!-- <li class="nav-item d-flex align-items-center"><a id="search"
-						class="nav-link" href="#"><i class="icon-search"></i></a></li> -->
-					<!-- Notifications-->
-					<!-- <li class="nav-item dropdown"><a id="notifications"
-						class="nav-link" rel="nofollow" data-target="#" href="#"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-							class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span
-							class="badge">12</span></a>
-						<ul aria-labelledby="notifications" class="dropdown-menu">
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item nav-link">
-									<div class="notification">
-										<div class="notification-content">
-											<i class="fa fa-envelope bg-red"></i>You have 6 new messages
-										</div>
-										<div class="notification-time">
-											<small>4 minutes ago</small>
-										</div>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item nav-link">
-									<div class="notification">
-										<div class="notification-content">
-											<i class="fa fa-twitter bg-skyblue"></i>You have 2 followers
-										</div>
-										<div class="notification-time">
-											<small>4 minutes ago</small>
-										</div>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item nav-link">
-									<div class="notification">
-										<div class="notification-content">
-											<i class="fa fa-upload bg-blue"></i>Server Rebooted
-										</div>
-										<div class="notification-time">
-											<small>4 minutes ago</small>
-										</div>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item nav-link">
-									<div class="notification">
-										<div class="notification-content">
-											<i class="fa fa-twitter bg-skyblue"></i>You have 2 followers
-										</div>
-										<div class="notification-time">
-											<small>10 minutes ago</small>
-										</div>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item all-notifications text-center"> <strong>view
-										all notifications </strong></a></li>
-						</ul></li> -->
-					<!-- Messages                        -->
-					<!-- <li class="nav-item dropdown"><a id="messages"
-						class="nav-link logout" rel="nofollow" data-target="#" href="#"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-							class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span
-							class="badge">10</span></a>
-						<ul aria-labelledby="messages" class="dropdown-menu">
-							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<div class="msg-profile">
-										<img src="img/avatar-1.jpg" alt="..."
-											class="img-fluid rounded-circle">
-									</div>
-									<div class="msg-body">
-										<h3 class="h5 msg-nav-h3">Jason Doe</h3>
-										<span>Sent You Message</span>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<div class="msg-profile">
-										<img src="img/avatar-2.jpg" alt="..."
-											class="img-fluid rounded-circle">
-									</div>
-									<div class="msg-body">
-										<h3 class="h5 msg-nav-h3">Frank Williams</h3>
-										<span>Sent You Message</span>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<div class="msg-profile">
-										<img src="img/avatar-3.jpg" alt="..."
-											class="img-fluid rounded-circle">
-									</div>
-									<div class="msg-body">
-										<h3 class="h5 msg-nav-h3">Ashley Wood</h3>
-										<span>Sent You Message</span>
-									</div>
-							</a></li>
-							<li><a rel="nofollow" href="#"
-								class="dropdown-item all-notifications text-center"> <strong>Read
-										all messages </strong></a></li>
-						</ul></li> -->
+
 					<li class="nav-item dropdown"><a id="profile"
 						class="nav-link logout" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
@@ -182,10 +79,7 @@
 							style="height: 30px; width: 30px;"></a>
 						<ul aria-labelledby="profile" class="dropdown-menu profile">
 							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<!-- <div class="msg-profile">
-										<img src="img/avatar-1.jpg" alt="..."
-											class="img-fluid rounded-circle">
-									</div> -->
+
 									<div class="msg-body">
 										<h3 class="h5">Steena Ben</h3>
 										<span>steenaben@Businessbox.com</span>
@@ -353,61 +247,14 @@
 		<!--***** SIDE NAVBAR *****-->
 		<nav class="side-navbar">
 			<div class="sidebar-header d-flex align-items-center">
-				<!-- <div class="avatar">
-					<img src="img/avatar-1.jpg" alt="..."
-						class="img-fluid rounded-circle">
-				</div> -->
+
 				<div class="title">
 					<h1 class="h4">${sysLogin.username }</h1>
 				</div>
 			</div>
 			<hr>
-			<!-- Sidebar Navidation Menus-->
-			<!-- <ul class="list-unstyled">
-				<li><a href="index.html"><i class="icon-home"></i>Home</a></li>
-				<li><a href="#apps" aria-expanded="false"
-					data-toggle="collapse"> <i class="icon-interface-windows"></i>商品管理
-				</a>
-					<ul id="apps" class="collapse list-unstyled">
-						<li><a href="sys/goodsList/tables">商品列表</a></li>
-						<li><a href="sys/goodsCategory/selectGoodsCategory">上传商品</a></li>
 
-					</ul></li>
-				<li><a href="chart.html"> <i class="fa fa-bar-chart"></i>Chart
-				</a></li>
-				<li><a href="#forms" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-building-o"></i>Forms
-				</a>
-					<ul id="forms" class="collapse list-unstyled">
-						<li><a href="basic-form.html">Basic Form</a></li>
-						<li><a href="form-layouts.html">Form Layouts</a></li>
-					</ul></li>
-				<li><a href="maps.html"> <i class="fa fa-map-o"></i>Maps
-				</a></li>
-				<li class="active"><a href="#pages" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-file-o"></i>Pages
-				</a>
-					<ul id="pages" class="collapse list-unstyled">
-						<li><a href="faq.html">FAQ</a></li>
-						<li><a href="empty.html">Empty</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-						<li><a href="login.html">Log In</a></li>
-						<li class="active"><a href="register.html">Register</a></li>
-						<li><a href="search-result.html">Search Result</a></li>
-						<li><a href="404.html">404</a></li>
-					</ul></li>
-				<li><a href="tables.html"> <i class="icon-grid"></i>Tables
-				</a></li>
-				<li><a href="#elements" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-globe"></i>UI Elements
-				</a>
-					<ul id="elements" class="collapse list-unstyled">
-						<li><a href="ui-buttons.html">Buttons</a></li>
-						<li><a href="ui-cards.html">Cards</a></li>
-						<li><a href="ui-progressbars.html">Progress Bar</a></li>
-						<li><a href="ui-timeline.html">Timeline</a></li>
-					</ul></li>
-			</ul> --><jsp:include page="include/left_nav.jsp"></jsp:include>
+			<jsp:include page="include/left_nav.jsp"></jsp:include>
 			<span class="heading">Extras</span>
 			<ul class="list-unstyled">
 				<li><a href="#"> <i class="icon-picture"></i>Demo
@@ -442,6 +289,15 @@
 
 											<c:forEach var="item" items="${object.object}">
 												<option value="${item.categoryId}">${item.categoryName}</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="name">请选择商品上传的店铺</label> <select
+											class="form-control" id="shopId" name="shopId">
+
+											<c:forEach var="item" items="${shop.object}">
+												<option value="${item.shopId}">${item.shopName}</option>
 											</c:forEach>
 										</select>
 									</div>

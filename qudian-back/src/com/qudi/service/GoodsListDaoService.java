@@ -10,7 +10,7 @@ import com.qudi.util.MessageUtil;
  */
 public interface GoodsListDaoService {
 
-	MessageUtil add(GoodsList goods);
+	MessageUtil add(GoodsList goods,int shopId);
 
 	MessageUtil selectGoodsList(int userId);
 

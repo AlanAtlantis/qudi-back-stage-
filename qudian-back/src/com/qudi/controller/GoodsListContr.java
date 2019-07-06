@@ -39,7 +39,7 @@ public class GoodsListContr {
 	private GoodsDetailsDaoService goodsDetailsDaoService;
 
 	/**
-	 * Ìí¼ÓÉÌÆ·
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 	 * 
 	 * @param model
 	 * @param goods
@@ -48,17 +48,17 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model, GoodsList goods, HttpServletRequest request,
-			@RequestParam("detailsDescribe") String detailsDescribe) {
-		// »ñÈ¡ÓÃ»§ÐÅÏ¢
+			@RequestParam("detailsDescribe") String detailsDescribe, @RequestParam("shopId") int shopId) {
+		// èŽ·å–ç”¨æˆ·ä¿¡æ¯
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
 
-		// ÓÃ»§id
+		// ç”¨æˆ·id
 		goods.setUserId(user.getId());
 
-		MessageUtil message = goodsListService.add(goods);
+		MessageUtil message = goodsListService.add(goods, shopId);
 		System.out.println("------------------------>>>>>>>id:" + goods.getGoodsId());
 		goodsDetailsDaoService.addDetails(detailsDescribe, goods.getGoodsId());
-		// ÅÐ¶ÏÊÇ·ñÌí¼Ó³É¹¦
+		// åˆ¤æ–­
 		if (Result.SUCCEED == message.getResult()) {
 			model.addAttribute("message", goodsListService.selectGoodsList(1));
 			return "tables";
@@ -68,7 +68,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * ÏÔÊ¾ÉÌÆ·ÁÐ±í
+	 * æŸ¥è¯¢ä¿¡æ¯
 	 * 
 	 * @param model
 	 * @param request
@@ -76,9 +76,9 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/tables", method = RequestMethod.GET)
 	public String selectGoodsList(Model model, HttpServletRequest request) {
-		// »ñÈ¡ÓÃ»§ÐÅÏ¢
+		// ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// ÔÝÊ±Ö¸¶¨ÓÃ»§£¬
+		// ï¿½ï¿½Ê±Ö¸ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
@@ -86,7 +86,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * ÐÞ¸ÄÉÌÆ·×´Ì¬
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½Æ·×´Ì¬
 	 * 
 	 * @param status
 	 * @param goodsId
@@ -101,19 +101,19 @@ public class GoodsListContr {
 		System.out.println("----------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>.----------------------");
 
 		model.addAttribute("message", goodsListService.goodsShelves(status, goodsId));
-		// »ñÈ¡ÓÃ»§ÐÅÏ¢
+		// ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
-		// µ÷ÓÃ²éÑ¯·½·¨
+		// ï¿½ï¿½ï¿½Ã²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		// selectGoodsList(model, request);
 		return "tables";
 
 	}
 
 	/**
-	 * ÐÞ¸ÄÉÌÆ·
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½Æ·
 	 * 
 	 * @param goodsList
 	 * @param model
@@ -125,19 +125,19 @@ public class GoodsListContr {
 
 		System.out.println("-------------------->>>>>detailsDescribe:" + detailsDescribe);
 		model.addAttribute("message", goodsListService.updateGoods(goodsList));
-		// ²éÑ¯ÉÌÆ·ÃèÊö
+		// ï¿½ï¿½Ñ¯ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 		Object object = goodsDetailsDaoService.querydetails(goodsList.getGoodsId()).getObject();
 		System.out.println("------------->>>>>>>>object:" + object);
-		// ÅÐ¶ÏÊÇ·ñÓÐÉÌÆ·ÃèÊö£¬ÈôÎÞÉÌÆ·ÃèÊöÔòÌí¼ÓÉÌÆ·ÃèÊö
+		//
 		if (object == null) {
 			goodsDetailsDaoService.addDetails(detailsDescribe, goodsList.getGoodsId());
 		} else {
-			// ÐÞ¸ÄÉÌÆ·ÃèÊö
+			//
 			goodsDetailsDaoService.updatedetails(detailsDescribe, goodsList.getGoodsId());
 		}
-		// »ñÈ¡ÓÃ»§ÐÅÏ¢
+		//
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// ÔÝÊ±Ö¸¶¨ÓÃ»§£¬
+		//
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
@@ -145,7 +145,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * ÉÌÆ·ÐÞ¸ÄÊý¾Ý²éÑ¯
+	 * ï¿½ï¿½Æ·ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ý²ï¿½Ñ¯
 	 * 
 	 * @param goodsId
 	 * @param model
@@ -154,7 +154,7 @@ public class GoodsListContr {
 	@RequestMapping(value = "/updatePage", method = RequestMethod.GET)
 	public String updatePage(@RequestParam("goodsId") int goodsId, Model model) {
 		// goodsListService.selectGoodsId(goodsId);
-		// ±£´æ²éÑ¯µÄÊý¾Ý
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		/*
 		 * JSONObject json = new JSONObject(); json.put("goodsList",
 		 * goodsListService.selectGoodsId(goodsId).getObject());
@@ -162,7 +162,7 @@ public class GoodsListContr {
 		 * goodsCategoryDaoService.selectGoodsCategory().getObject());
 		 * model.addAttribute("json", json);
 		 */
-		// ²éÑ¯ÉÌÆ·ÃèÊö
+		// ï¿½ï¿½Ñ¯ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("goodaDetails", goodsDetailsDaoService.querydetails(goodsId));
 		model.addAttribute("goodsCategory", goodsCategoryDaoService.selectGoodsCategory().getObject());
 		model.addAttribute("goodsList", goodsListService.selectGoodsId(goodsId).getObject());
@@ -170,7 +170,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * ÉÌÆ·ÐÞ¸Ä²éÑ¯
+	 * ï¿½ï¿½Æ·ï¿½Þ¸Ä²ï¿½Ñ¯
 	 * 
 	 * @param model
 	 * @param request
@@ -178,9 +178,9 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/updateDataList", method = RequestMethod.GET)
 	public String updateDataList(Model model, HttpServletRequest request) {
-		// »ñÈ¡ÓÃ»§ÐÅÏ¢
+		// ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// ÔÝÊ±Ö¸¶¨ÓÃ»§£¬
+		// ï¿½ï¿½Ê±Ö¸ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
@@ -190,7 +190,7 @@ public class GoodsListContr {
 	@RequestMapping(value = "/uploadPage", method = RequestMethod.GET)
 	public String uploadPage(@RequestParam("goodsId") int goodsId, Model model) {
 		model.addAttribute("goodsId", goodsId);
-		// ²éÑ¯ÉÌÆ·Í¼Æ¬ÐÅÏ¢
+		// ï¿½ï¿½Ñ¯ï¿½ï¿½Æ·Í¼Æ¬ï¿½ï¿½Ï¢
 		model.addAttribute("goodsImg", goodsImgDaoService.selectGoodsImg(goodsId));
 		return "uploadImg";
 	}
