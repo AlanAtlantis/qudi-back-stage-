@@ -14,7 +14,7 @@ import com.qudi.bean.GoodsList;
 public interface GoodsListDao {
 
 	/**
-	 * Ìí¼ÓÉÌÆ·
+	 * æ·»åŠ å•†å“
 	 * 
 	 * @param goods
 	 * @return
@@ -22,14 +22,14 @@ public interface GoodsListDao {
 	int add(GoodsList goods);
 
 	/**
-	 * Ìí¼ÓÉÌÆ·ÓëµêÆÌµÄ¹ØÏµ
+	 * æ·»åŠ å•†å“ä¸ç”¨æˆ·å…³ç³»
 	 * 
 	 * @return
 	 */
 	int addShop2Goods(@Param("shopId") int shopId, @Param("goodsId") int goodsId);
 
 	/**
-	 * ²éÑ¯ÓÃ»§ËùÓĞÉÌÆ·ÁĞ±í
+	 * æŸ¥è¯¢å•†å“é›†åˆ
 	 * 
 	 * @param userId
 	 * @return
@@ -37,7 +37,7 @@ public interface GoodsListDao {
 	List<GoodsList> selectGoodsList(@Param("userId") int userId);
 
 	/**
-	 * ÉÌÆ·ÉÏ¼ÜÓëÏÂ¼Ü
+	 * ä¿®æ”¹å•†å“çŠ¶æ€
 	 * 
 	 * @param status
 	 * @return
@@ -45,7 +45,7 @@ public interface GoodsListDao {
 	int goodsShelves(@Param("status") int status, @Param("goodsId") int goodsId);
 
 	/**
-	 * ÉÌÆ·ĞÅÏ¢ĞŞ¸Ä
+	 * ä¿®æ”¹å•†å“
 	 * 
 	 * @param goodsList
 	 * @return
@@ -53,7 +53,7 @@ public interface GoodsListDao {
 	int updateGoods(GoodsList goodsList);
 
 	/**
-	 * ¸ù¾İÉÌÆ·id²éÑ¯ÉÌÆ·
+	 * æŸ¥è¯¢å•†å“
 	 * 
 	 * @param goodsId
 	 * @return
@@ -61,7 +61,8 @@ public interface GoodsListDao {
 	GoodsList selectGoodsId(@Param("goodsId") int goodsId);
 
 	/**
-	 * ²éÑ¯¿â´æÉÌÆ·
+	 * 
+	 * æŸ¥è¯¢æŒ‡å®š
 	 * 
 	 * @return
 	 */

@@ -118,7 +118,7 @@ public class SysUserController {
 	}
 
 	/**
-	 * 璺宠浆淇敼闋侀潰鏂规硶
+	 * 修改用户信息页面
 	 * 
 	 * @param request
 	 * @return
@@ -152,7 +152,7 @@ public class SysUserController {
 		MessageUtil message = sysUserService.thequery_theorder(orderid, userid);
 
 		if (Result.SUCCEED == message.getResult()) {
-			// 淇濆瓨鐧诲綍淇℃伅
+			// 
 			request.getSession().setAttribute("list", message.getObject());
 
 			return "theorder";
@@ -162,7 +162,7 @@ public class SysUserController {
 	
 	
 	/**
-	 * 璺宠浆璁㈠崟闋侀潰鏂规硶
+	 * 注册页面
 	 * 
 	 * @param request
 	 * @return

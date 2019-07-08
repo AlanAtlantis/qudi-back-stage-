@@ -39,7 +39,7 @@ public class GoodsListContr {
 	private GoodsDetailsDaoService goodsDetailsDaoService;
 
 	/**
-	 * �����Ʒ
+	 * 添加商品
 	 * 
 	 * @param model
 	 * @param goods
@@ -76,9 +76,9 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/tables", method = RequestMethod.GET)
 	public String selectGoodsList(Model model, HttpServletRequest request) {
-		// ��ȡ�û���Ϣ
+		// 获取用户信息
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// ��ʱָ���û���
+		// 用户id获取
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
@@ -86,7 +86,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * �޸���Ʒ״̬
+	 * ̬修改商品状态
 	 * 
 	 * @param status
 	 * @param goodsId
@@ -101,19 +101,19 @@ public class GoodsListContr {
 		System.out.println("----------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>.----------------------");
 
 		model.addAttribute("message", goodsListService.goodsShelves(status, goodsId));
-		// ��ȡ�û���Ϣ
+		// 获取用户信息
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
-		// ���ò�ѯ����
+
 		// selectGoodsList(model, request);
 		return "tables";
 
 	}
 
 	/**
-	 * �޸���Ʒ
+	 * 修改商品信息
 	 * 
 	 * @param goodsList
 	 * @param model
@@ -125,7 +125,7 @@ public class GoodsListContr {
 
 		System.out.println("-------------------->>>>>detailsDescribe:" + detailsDescribe);
 		model.addAttribute("message", goodsListService.updateGoods(goodsList));
-		// ��ѯ��Ʒ����
+		// 查询商品描述信息
 		Object object = goodsDetailsDaoService.querydetails(goodsList.getGoodsId()).getObject();
 		System.out.println("------------->>>>>>>>object:" + object);
 		//
@@ -145,7 +145,7 @@ public class GoodsListContr {
 	}
 
 	/**
-	 * ��Ʒ�޸����ݲ�ѯ
+	 * 商品修改页
 	 * 
 	 * @param goodsId
 	 * @param model
@@ -153,24 +153,18 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/updatePage", method = RequestMethod.GET)
 	public String updatePage(@RequestParam("goodsId") int goodsId, Model model) {
-		// goodsListService.selectGoodsId(goodsId);
-		// �����ѯ������
-		/*
-		 * JSONObject json = new JSONObject(); json.put("goodsList",
-		 * goodsListService.selectGoodsId(goodsId).getObject());
-		 * json.put("goodsCategory",
-		 * goodsCategoryDaoService.selectGoodsCategory().getObject());
-		 * model.addAttribute("json", json);
-		 */
-		// ��ѯ��Ʒ����
+
+		// 查询商品描述信息
 		model.addAttribute("goodaDetails", goodsDetailsDaoService.querydetails(goodsId));
+		// 查询商品类别
 		model.addAttribute("goodsCategory", goodsCategoryDaoService.selectGoodsCategory().getObject());
+		// 根据id查询商品
 		model.addAttribute("goodsList", goodsListService.selectGoodsId(goodsId).getObject());
 		return "update";
 	}
 
 	/**
-	 * ��Ʒ�޸Ĳ�ѯ
+	 * 修改商品描述
 	 * 
 	 * @param model
 	 * @param request
@@ -178,9 +172,9 @@ public class GoodsListContr {
 	 */
 	@RequestMapping(value = "/updateDataList", method = RequestMethod.GET)
 	public String updateDataList(Model model, HttpServletRequest request) {
-		// ��ȡ�û���Ϣ
+		// 获取登录用户信息
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// ��ʱָ���û���
+		// 获取用户id
 		int userId = user.getId();
 		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
@@ -190,7 +184,7 @@ public class GoodsListContr {
 	@RequestMapping(value = "/uploadPage", method = RequestMethod.GET)
 	public String uploadPage(@RequestParam("goodsId") int goodsId, Model model) {
 		model.addAttribute("goodsId", goodsId);
-		// ��ѯ��ƷͼƬ��Ϣ
+		// 查询商品图片
 		model.addAttribute("goodsImg", goodsImgDaoService.selectGoodsImg(goodsId));
 		return "uploadImg";
 	}

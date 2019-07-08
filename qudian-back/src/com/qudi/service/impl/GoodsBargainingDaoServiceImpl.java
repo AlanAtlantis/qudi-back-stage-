@@ -21,9 +21,9 @@ public class GoodsBargainingDaoServiceImpl implements GoodsBargainingDaoService 
 	public MessageUtil queryBar(int goodsId) {
 		MessageUtil message = new MessageUtil();
 		if (goodsId > 0) {
-			// ²éÑ¯Òé¼ÛĞÅÏ¢
+			// æ ¹æ®å•†å“idæŸ¥è¯¢è®®ä»·ä¿¡æ¯
 			List<GoodsBargaining> list = goodsBargainingDao.queryBar(goodsId);
-			// ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ
+			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
 			if (list.size() > 0) {
 				message.setInfo("The query is successful");
 				message.setResult(Result.SUCCEED);
@@ -43,7 +43,7 @@ public class GoodsBargainingDaoServiceImpl implements GoodsBargainingDaoService 
 	public MessageUtil updatebar(int bargainingStatus, int bargainingId) {
 		MessageUtil message = new MessageUtil();
 		if (bargainingId > 0) {
-			// µ÷ÓÃĞŞ¸Ä²¢ÅĞ¶ÏÊÇ·ñĞŞ¸Ä³É¹¦
+			// ä¿®æ”¹è®®ä»·ä¿¡æ¯å¹¶åˆ¤æ–­æ˜¯å¦ä¿®æ”¹æˆåŠŸ
 			if (goodsBargainingDao.updatebar(bargainingStatus, bargainingId) > 0) {
 				message.setInfo("modify successfully");
 				message.setResult(Result.SUCCEED);
