@@ -20,11 +20,11 @@ public class SessionFilter extends OncePerRequestFilter {
 
 		System.out.println("---------------------url:" + url);
 
-		String[] notFilter = new String[] { "goodsBargaining", "goodsCategory", "goodsImg", "goodsList", "shop",
+		String[] filter = new String[] { "goodsBargaining", "goodsCategory", "goodsImg", "goodsList", "shop",
 				"upload" };
 
 		boolean doFilter = false;
-		for (String s : notFilter) {
+		for (String s : filter) {
 			// 过滤
 			if (url.indexOf(s) != -1) {
 				doFilter = true;
