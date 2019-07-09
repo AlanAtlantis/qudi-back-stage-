@@ -3,28 +3,29 @@ package com.qudi.bean;
 import java.math.BigInteger;
 
 /**
- * Òé¼ÛÐÅÏ¢
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
  * 
  * @author AlanAtlantis
  *
  */
 public class GoodsBargaining {
 
-	private int bargainingId;// Òé¼Û±íid
-	private Long bargainingPrice;// ÉÌÆ·¼Û¸ñ
-	private int priceType;// ¼Û¸ñÀàÐÍ
-	private int userId;// ÓÃ»§id
-	private int goodsId;// ÉÌÆ·id
-	private String bargainingRemark;// ±¸×¢
+	private int bargainingId;// 
+	private Long bargainingPrice;// 
+	private int priceType;// 
+	private int userId;//
+	private int goodsId;//
+	private String bargainingRemark;//×¢
 	private int bargainingStatus;// ×´Ì¬
-	private String createTime;// ´´½¨Ê±¼ä
+	private String createTime;//
+	private int number;
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "GoodsBargaining [bargainingId=" + bargainingId + ",bargainingPrice=" + bargainingPrice + ",priceType="
-				+ priceType + ",userId=" + userId + ",goodsId=" + goodsId + ",bargainingRemark=" + bargainingRemark
-				+ ",bargainingStatus=" + bargainingStatus + ",createTime=" + createTime + "]";
+				+ priceType + ",userId=" + userId + ",goodsId=" + goodsId + ",number=" + number + ",bargainingRemark="
+				+ bargainingRemark + ",bargainingStatus=" + bargainingStatus + ",createTime=" + createTime + "]";
 	}
 
 	public int getBargainingId() {
@@ -89,6 +90,14 @@ public class GoodsBargaining {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 }

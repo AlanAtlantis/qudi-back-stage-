@@ -22,7 +22,7 @@ public class GoodsImgController {
 
 	@RequestMapping(value = "/selectGoodsImg", method = RequestMethod.GET)
 	public String selectGoodsImg(@RequestParam("goodsId") int goodsId, Model model) {
-		// 查询商品图片
+		// 鍟嗗搧鍥剧墖鏌ヨ
 		model.addAttribute("goodsImg", goodsImgDaoService.selectGoodsImg(goodsId));
 		return "goodsUploadImg";
 	}
@@ -30,7 +30,7 @@ public class GoodsImgController {
 	@RequestMapping(value = "/updateImg", method = RequestMethod.GET)
 	public String updateImg(GoodsImg goodsImg, Model model, @RequestParam("goodsId") int goodsId) {
 		model.addAttribute("goodsId", goodsId);
-		// 修改商品图片
+		// 淇敼鍟嗗搧鍥剧墖
 		model.addAttribute("message", goodsImgDaoService.updateImg(goodsImg));
 		model.addAttribute("goodsImg", goodsImgDaoService.selectGoodsImg(goodsId));
 		return "uploadImg";
@@ -39,7 +39,7 @@ public class GoodsImgController {
 	@RequestMapping(value = "/deleteImg", method = RequestMethod.GET)
 	public String deleteImg(@RequestParam("picId") int picId, Model model, @RequestParam("goodsId") int goodsId) {
 		model.addAttribute("goodsId", goodsId);
-		// 删除商品图片
+		// 鍒犻櫎鍥剧墖
 		model.addAttribute("message", goodsImgDaoService.deleteImg(picId));
 		model.addAttribute("goodsImg", goodsImgDaoService.selectGoodsImg(goodsId));
 		return "uploadImg";
@@ -47,13 +47,13 @@ public class GoodsImgController {
 	}
 
 	/**
-	 * 测试方法
+	 * 娴嬭瘯鏂规硶
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Model model) {
-		// 删除商品图片
+		
 		// model.addAttribute("message", goodsImgDaoService.deleteImg(picId));
 		GoodsImg goodsIng = new GoodsImg();
 		goodsIng.setGoodsId(1);

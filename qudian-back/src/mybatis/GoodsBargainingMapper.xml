@@ -12,11 +12,12 @@
 		<result column="bargaining_remark" property="bargainingRemark" />
 		<result column="create_time" property="createTime" />
 		<result column="bargaining_status" property="bargainingStatus" />
+		<result column="number" property="number"/>
 	</resultMap>
 
 	<select id="queryBar" resultMap="goodsBargaining">
 		select
-		bargaining_id,bargaining_price,price_type,user_id,goods_id,bargaining_remark,create_time,bargaining_status
+		bargaining_id,bargaining_price,price_type,user_id,goods_id,number,bargaining_remark,create_time,bargaining_status
 		from goods_bargaining where goods_id=#{goodsId}
 	</select>
 

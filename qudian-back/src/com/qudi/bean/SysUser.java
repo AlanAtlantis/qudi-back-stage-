@@ -25,44 +25,17 @@ public class SysUser {
 	private String createdate;// 创建操作时间
 	private String updauser;// 修改操作人
 	private String updadate;// 修改操作时间
-	private int bankcard;// 銀行卡號
-	private String dutyparagraph;// 稅號
-	private String businesslicense;// 營業执照
-	
+
 	@Override
 	public String toString() {
-		return "SysUser [id=" + id + ", usertype=" + usertype + ", username=" + username + ", password=" + password
-				+ ", level=" + level + ", sex=" + sex + ", phone=" + phone + ", email=" + email + ", notdel=" + notdel
-				+ ", birthday=" + birthday + ", address=" + address + ", remarks=" + remarks + ", status=" + status
-				+ ", createuser=" + createuser + ", createdate=" + createdate + ", updauser=" + updauser + ", updadate="
-				+ updadate + ", bankcard=" + bankcard + ", dutyparagraph=" + dutyparagraph + ", businesslicense="
-				+ businesslicense + "]";
+		// TODO Auto-generated method stub
+		return "SysUser[id=" + id + ",usertype=" + usertype + ",username=" + username + ",password=" + password
+				+ ",level=" + level + ",sex=" + sex + ",phone=" + phone + ",email=" + email + ",notdel=" + notdel
+				+ ",birthday=" + birthday + ",address=" + address + ",remarks=" + remarks + ",status=" + status
+				+ ",createuser=" + createuser + ",createdate=" + createdate + ",updauser=" + updauser + ",updadate="
+				+ updadate + "]";
 	}
 
-	public int getBankcard() {
-		return bankcard;
-	}
-
-	public void setBankcard(int bankcard) {
-		this.bankcard = bankcard;
-	}
-
-	public String getDutyparagraph() {
-		return dutyparagraph;
-	}
-
-	public void setDutyparagraph(String dutyparagraph) {
-		this.dutyparagraph = dutyparagraph;
-	}
-
-	public String getBusinesslicense() {
-		return businesslicense;
-	}
-
-	public void setBusinesslicense(String businesslicense) {
-		this.businesslicense = businesslicense;
-	}
-	
 	public int getId() {
 		return id;
 	}

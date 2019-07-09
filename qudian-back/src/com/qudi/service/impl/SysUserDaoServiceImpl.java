@@ -12,6 +12,7 @@ import com.qudi.service.SysUserDaoService;
 import com.qudi.util.MD5Util;
 import com.qudi.util.MessageUtil;
 import com.qudi.util.Result;
+import com.sun.star.bridge.oleautomation.Date;
 
 /**
  * 后台用户业务逻辑层方法实现类
@@ -61,9 +62,10 @@ public class SysUserDaoServiceImpl implements SysUserDaoService {
 
 		MessageUtil message = new MessageUtil();
 
-		List<HashMap> map = sysUserDao.checkphone_sysuser(phone,0);
+		List<HashMap> map = sysUserDao.checkphone_sysuser(phone, 0);
 
 		if (map.size() > 0) {
+
 			message.setInfo("號碼已存在");
 			message.setResult(Result.FAILED);
 			return message;
@@ -118,7 +120,7 @@ public class SysUserDaoServiceImpl implements SysUserDaoService {
 
 		MessageUtil message = new MessageUtil();
 
-		List<HashMap> map = sysUserDao.checkphone_sysuser(phone,id);
+		List<HashMap> map = sysUserDao.checkphone_sysuser(phone, id);
 		if (map.size() > 0) {
 			message.setInfo("號碼已存在");
 			message.setResult(Result.FAILED);
@@ -235,26 +237,6 @@ public class SysUserDaoServiceImpl implements SysUserDaoService {
 		}
 		message.setInfo("查詢失敗！");
 		message.setResult(Result.FAILED);
-		return message;
-	}
-
-/**
- * 查詢用户信息
- */
-	public MessageUtil userinfo_sysuser(int id) {
-		
-		// 声明返回信息类
-		MessageUtil message = new MessageUtil();
-
-		// 声明后台实体类，并接收dao层查询方法。
-		List<HashMap> sysuser = sysUserDao.userinfo_sysuser(id);
-
-		// 判断用户对象不为空
-		if (sysuser != null) {
-			message.setResult(Result.SUCCEED);// 接收返回状态
-			message.setObject(sysuser);// 接收用户对象
-			return message;
-		}
 		return message;
 	}
 

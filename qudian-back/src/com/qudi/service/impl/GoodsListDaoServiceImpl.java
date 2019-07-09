@@ -23,12 +23,12 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	@Autowired
 	private GoodsListDao goodsListDao;
 
-	public MessageUtil add(GoodsList goods) {
+	public MessageUtil add(GoodsList goods, int shopId) {
 		MessageUtil message = new MessageUtil();
 		if (goods != null) {
 
 			if (goodsListDao.add(goods) > 0) {
-				goodsListDao.addShop2Goods(1, goods.getGoodsId());
+				goodsListDao.addShop2Goods(shopId, goods.getGoodsId());
 				message.setInfo("successfully added");
 				message.setResult(Result.SUCCEED);
 				return message;
@@ -69,7 +69,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 
 		if (status > 0) {
 
-			// �ж��Ƿ��޸ĳɹ�
+			// 修改商品状态并判断是否修改成功
 			if (goodsListDao.goodsShelves(status, goodsId) > 0) {
 				message.setResult(Result.SUCCEED);
 				message.setInfo("goods status modified successfully");
@@ -88,7 +88,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	public MessageUtil updateGoods(GoodsList goodsList) {
 		MessageUtil message = new MessageUtil();
 		if (goodsList != null) {
-			// ������Ʒ��Ϣ
+			// 修改商品信息并判断是否修改成功
 			if (goodsListDao.updateGoods(goodsList) > 0) {
 				message.setResult(Result.SUCCEED);
 				message.setInfo("Modify the success");
@@ -107,7 +107,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	public MessageUtil selectGoodsId(int goodsId) {
 		MessageUtil message = new MessageUtil();
 		if (goodsId > 0) {
-			// ��ѯ
+			// 根据商品id查询商品信息
 			GoodsList goods = goodsListDao.selectGoodsId(goodsId);
 			if (goods != null) {
 				message.setObject(goods);
@@ -125,7 +125,7 @@ public class GoodsListDaoServiceImpl implements GoodsListDaoService {
 	@Override
 	public MessageUtil goodsCategory(int userId) {
 		MessageUtil message = new MessageUtil();
-		// ��ѯ�����Ʒ
+		// 根据用户id查询商品分类
 		List<GoodsList> goods = goodsListDao.goodsCategory(userId);
 		if (goods.size() > 0) {
 			message.setObject(goods);

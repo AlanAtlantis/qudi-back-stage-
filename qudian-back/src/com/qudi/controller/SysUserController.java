@@ -4,18 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qudi.bean.SysUser;
+import com.qudi.dao.SysUserDao;
 import com.qudi.service.SysUserDaoService;
 import com.qudi.util.MessageUtil;
 import com.qudi.util.Result;
 
 /**
+ * 鍚庡彴鐢ㄦ埛鎺у埗灞傜被
  * 
  * @author nan
  *
@@ -25,32 +27,34 @@ import com.qudi.util.Result;
 public class SysUserController {
 
 	/*
+	 * 澹版槑鍚庡彴鐢ㄦ埛涓氬姟閫昏緫灞傛柟娉曠被
 	 */
 	@Autowired
 	private SysUserDaoService sysUserService;
 
 	/**
-	 * 登录方法
+	 * 登录
+	 * 
 	 * @param request
 	 * @param username
 	 * @param password
 	 * @return
 	 */
 	@RequestMapping(value = "/login_sysuser", method = RequestMethod.GET)
-	public String login_sysuser(HttpServletRequest request,Model model, @RequestParam String username,
+	public String login_sysuser(HttpServletRequest request, @RequestParam String username,
 			@RequestParam String password) {
 
+		System.out.println(username + "\t\t" + password);
 		MessageUtil message = sysUserService.login_sysuser(username, password);
 
-		if (Result.SUCCEED == message.getResult()) {
+		if (message.getObject() != null) {
 			request.getSession().setAttribute("sysLogin", message.getObject());
 			request.getSession().setAttribute("user", message.getObject());
 
-			//修改
 			SysUser sysuser = (SysUser) request.getSession().getAttribute("sysLogin");
 			MessageUtil mess = sysUserService.thequery_show(sysuser.getId());
-			model.addAttribute("userid",sysuser.getId());
-			model.addAttribute("list", mess.getObject());
+			request.getSession().setAttribute("userid", sysuser.getId());
+			request.getSession().setAttribute("list", mess.getObject());
 
 			return "theorder";
 		}
@@ -58,7 +62,8 @@ public class SysUserController {
 	}
 
 	/**
-	 * 註冊方法
+	 * 注册
+	 * 
 	 * @param sysuser
 	 * @return
 	 */
@@ -76,7 +81,8 @@ public class SysUserController {
 	}
 
 	/**
-	 * 修改方法
+	 * 修改用户信息
+	 * 
 	 * @param sysuser
 	 * @return
 	 */
@@ -88,32 +94,19 @@ public class SysUserController {
 		MessageUtil message = sysUserService.update_sysuser(password, sex, phone, email, birthday, address, remarks,
 				id);
 
+		System.out.println("impl:" + password + "------" + sex + "------" + phone + "------" + email + "------"
+				+ birthday + "------" + address + "------" + remarks + "------" + id);
+
 		if (Result.SUCCEED == message.getResult()) {
 			request.setAttribute("message", message.getInfo());
-			return "login";
+			return "updateUser";
 		}
 		return "updateUser";
 	}
-	
-	/**
-	 * 查詢用戶信息方法
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = "/userinfo_sysuser", method = RequestMethod.GET)
-	public String userinfo_sysuser(HttpServletRequest request,Model model) {
-
-		SysUser sysuser = (SysUser) request.getSession().getAttribute("sysLogin");
-		MessageUtil message=sysUserService.userinfo_sysuser(sysuser.getId());		
-	    
-		model.addAttribute("listUserinfo",message.getObject());
-
-		return "userinfo";
-	}
-
 
 	/**
-	 * 查询用戶名方法
+	 * 检查用户名
+	 * 
 	 * @param sysuser
 	 * @return
 	 */
@@ -126,7 +119,8 @@ public class SysUserController {
 	}
 
 	/**
-	 * 跳转用户修改页面
+	 * 修改用户信息页面
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -136,7 +130,8 @@ public class SysUserController {
 	}
 
 	/**
-	 * 跳转用户订单页面
+	 * 订单
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -146,6 +141,7 @@ public class SysUserController {
 	}
 
 	/**
+	 * 鏌ヨ鐢ㄦ埛璁㈠崟鏂规硶
 	 * 
 	 * @param request
 	 * @return
@@ -157,15 +153,16 @@ public class SysUserController {
 		MessageUtil message = sysUserService.thequery_theorder(orderid, userid);
 
 		if (Result.SUCCEED == message.getResult()) {
+			//
 			request.getSession().setAttribute("list", message.getObject());
 
 			return "theorder";
 		}
 		return "theorder";
 	}
-	
-	
+
 	/**
+	 * 注册页面
 	 * 
 	 * @param request
 	 * @return
@@ -173,17 +170,6 @@ public class SysUserController {
 	@RequestMapping(value = "/register_jump", method = RequestMethod.GET)
 	public String register_jump(HttpServletRequest request) {
 		return "register";
-	}
-
-	
-	/**
-	 * 跳转用户信息页面
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = "/userinfo_jump", method = RequestMethod.GET)
-	public String userinfo_jump(HttpServletRequest request) {
-		return "userinfo";
 	}
 
 }

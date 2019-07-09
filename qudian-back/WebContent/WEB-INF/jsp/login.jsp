@@ -36,6 +36,7 @@
 </head>
 
 <body>
+
 	<section class="hero-area">
 		<div class="overlay"></div>
 		<div class="container">
@@ -60,7 +61,7 @@
 						Login
 						</button>
 					</form> 
-				<span style="float:right;margin-top:-30px; " ><a href="sys/sysuser/register_jump">注册</a></span>
+				<span style="float:right;margin-top:-30px; " ><a href="#">注册</a></span>
 					</div>
 				</div>
 			</div>

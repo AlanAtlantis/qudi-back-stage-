@@ -393,7 +393,7 @@
 							<th>价格</th>
 							<th>状态</th>
 							<th>备注</th>
-
+							<th>数量</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -413,7 +413,7 @@
 										<c:otherwise>未成交</c:otherwise>
 									</c:choose></td>
 								<td>${item.bargainingRemark}</td>
-
+								<td>${item.number}</td>
 								<td><c:choose>
 										<c:when test="${item.bargainingStatus==1}">已出售</c:when>
 										<c:otherwise>
