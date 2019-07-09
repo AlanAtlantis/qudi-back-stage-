@@ -62,7 +62,7 @@ public class SysUserDaoServiceImpl implements SysUserDaoService {
 
 		MessageUtil message = new MessageUtil();
 
-		List<HashMap> map = sysUserDao.checkphone_sysuser(phone,0);
+		List<HashMap> map = sysUserDao.checkphone_sysuser(phone, 0);
 
 		if (map.size() > 0) {
 
@@ -120,7 +120,7 @@ public class SysUserDaoServiceImpl implements SysUserDaoService {
 
 		MessageUtil message = new MessageUtil();
 
-		List<HashMap> map = sysUserDao.checkphone_sysuser(phone,id);
+		List<HashMap> map = sysUserDao.checkphone_sysuser(phone, id);
 		if (map.size() > 0) {
 			message.setInfo("號碼已存在");
 			message.setResult(Result.FAILED);

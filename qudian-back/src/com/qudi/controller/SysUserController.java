@@ -33,7 +33,7 @@ public class SysUserController {
 	private SysUserDaoService sysUserService;
 
 	/**
-	 * 鍚庡彴鐢ㄦ埛鐧诲綍鏂规硶
+	 * 登录
 	 * 
 	 * @param request
 	 * @param username
@@ -62,7 +62,7 @@ public class SysUserController {
 	}
 
 	/**
-	 * 鍚庡彴鐢ㄦ埛娣诲姞鏂规硶
+	 * 注册
 	 * 
 	 * @param sysuser
 	 * @return
@@ -81,7 +81,7 @@ public class SysUserController {
 	}
 
 	/**
-	 * 寰屽彴鐢ㄦ埗淇敼鏂规硶
+	 * 修改用户信息
 	 * 
 	 * @param sysuser
 	 * @return
@@ -90,11 +90,12 @@ public class SysUserController {
 	public String update_sysuser(HttpServletRequest request, @RequestParam String password, @RequestParam int sex,
 			@RequestParam String phone, @RequestParam String email, @RequestParam String birthday,
 			@RequestParam String address, @RequestParam String remarks, @RequestParam int id) {
-		
+
 		MessageUtil message = sysUserService.update_sysuser(password, sex, phone, email, birthday, address, remarks,
 				id);
-		
-		System.out.println("impl:"+password+"------"+sex+"------"+phone+"------"+email+"------"+birthday+"------"+address+"------"+remarks+"------"+id);
+
+		System.out.println("impl:" + password + "------" + sex + "------" + phone + "------" + email + "------"
+				+ birthday + "------" + address + "------" + remarks + "------" + id);
 
 		if (Result.SUCCEED == message.getResult()) {
 			request.setAttribute("message", message.getInfo());
@@ -104,7 +105,7 @@ public class SysUserController {
 	}
 
 	/**
-	 * 鏌ヨ鐢ㄦ埗鍚嶆柟娉�
+	 * 检查用户名
 	 * 
 	 * @param sysuser
 	 * @return
@@ -129,7 +130,7 @@ public class SysUserController {
 	}
 
 	/**
-	 * 璺宠浆璁㈠崟闋侀潰鏂规硶
+	 * 订单
 	 * 
 	 * @param request
 	 * @return
@@ -152,15 +153,14 @@ public class SysUserController {
 		MessageUtil message = sysUserService.thequery_theorder(orderid, userid);
 
 		if (Result.SUCCEED == message.getResult()) {
-			// 
+			//
 			request.getSession().setAttribute("list", message.getObject());
 
 			return "theorder";
 		}
 		return "theorder";
 	}
-	
-	
+
 	/**
 	 * 注册页面
 	 * 
@@ -171,6 +171,5 @@ public class SysUserController {
 	public String register_jump(HttpServletRequest request) {
 		return "register";
 	}
-
 
 }

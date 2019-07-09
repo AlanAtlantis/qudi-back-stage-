@@ -36,6 +36,7 @@ public class SessionFilter extends OncePerRequestFilter {
 			// 获取session对象
 			HttpSession session = arg0.getSession();
 
+			// 获取用户登录信息
 			Object object = session.getAttribute("user");
 
 			System.out.println("---------------------------object:" + object);

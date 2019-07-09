@@ -56,31 +56,35 @@
 		resultType="java.util.HashMap">
 		select id,phone from sys_user
 		<where>
-			<if test="id==0">phone=#{phone} 
+			<if test="id==0">phone=#{phone}
 			</if>
 			<if test="id!=0">phone=#{phone} and id!=#{id}
-            </if>
+			</if>
 		</where>
 	</select>
 
 
-<!-- 查询用户订单信息 -->
+	<!-- 查询用户订单信息 -->
 	<select id="thequery_show" parameterType="int"
 		resultType="java.util.HashMap">
- select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks from
- order_info
+		select
+		orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks
+		from
+		order_info
 		where
 		userid=#{userid}
 	</select>
 
-<!-- 查询用户订单信息 -->
+	<!-- 查询用户订单信息 -->
 	<select id="thequery_theorder" parameterType="int"
 		resultType="java.util.HashMap">
- select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks,userid from
- order_info
-			<where>
+		select
+		orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks,userid
+		from
+		order_info
+		<where>
 			<if test="userid!=null">
-			 orderid=#{orderid} and userid=#{userid} 
+				orderid=#{orderid} and userid=#{userid}
 			</if>
 		</where>
 	</select>
