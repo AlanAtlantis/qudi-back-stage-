@@ -17,7 +17,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
-<title>北京玖远趣点</title>
+<title>北京玖远趣点用户修改页面</title>
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/favicon.ico">
 
@@ -299,18 +299,27 @@
 							<input type="hidden" name="id" value="${sysLogin.id}">
 							<div class="row" id="id">
 								<div class="col-md-6">
-
 									<div class="form-group">
 										<label for="name">密碼</label> <input type="text"
 											class="form-control" id="password"
 											aria-describedby="emailHelp" name="password"
 											value="${sysLogin.password }">
 									</div>
+									
 									<div class="form-group">
-										<label for="name">性別</label> <input type="text"
-											class="form-control" name="sex" aria-describedby="emailHelp"
-											value="${sysLogin.sex }" id="sex">
-									</div>
+										<label for="name">性別</label><br/>
+										  <c:choose>
+                          <c:when test="${sysLogin.sex==1}">
+                          <input type="radio" name="sex" checked="checked" value="1">男
+                          &nbsp; &nbsp; &nbsp;
+                          <input type="radio" name="sex" value="0">女
+                          </c:when>
+                          <c:otherwise>
+                          <input type="radio" name="sex" value="1">男     &nbsp; &nbsp; &nbsp;
+                          <input type="radio" name="sex" checked="checked" value="0">女
+                          </c:otherwise>
+                          </c:choose>	
+                          </div>
 									<div class="form-group">
 										<label for="name">電話</label> <input type="text"
 											class="form-control" name="phone" id="phone"
@@ -329,7 +338,7 @@
 									<div class="form-group">
 										<label for="name">地址</label> <input type="text"
 											class="form-control" name="address" id="address"
-											aria-describedby="emailHelp" value="${sysLogin.address }">
+											 value="${sysLogin.address }">
 									</div>
 
 									<div class="form-group">
@@ -340,8 +349,6 @@
 								</div>
 								<div class="col-md-6" id="goods-info"></div>
 							</div>
-
-
 							<button type="submit" class="btn btn-general btn-blue mr-2"
 								id="but">Submit</button>
 							<button type="reset" class="btn btn-general btn-white">Cancel</button>

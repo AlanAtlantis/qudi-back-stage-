@@ -64,4 +64,11 @@ public interface SysUserDaoService {
 	public MessageUtil thequery_theorder(@Param("orderid") String orderid,@Param("userid") int userid);
 	
 	
+	/**
+	 * 查詢用户信息
+	 * @param id
+	 * @return
+	 */
+	public MessageUtil	userinfo_sysuser(@Param("id") int id);
+	
 }

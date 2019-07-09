@@ -11,7 +11,7 @@
 	<select id="login_sysuser" resultType="com.qudi.bean.SysUser">
 		select
 		id,usertype,username,password,level,sex,phone,email,notdel,birthday,address,remarks,status,createuser,
-		createdate,updauser,updadate from sys_user
+		createdate,updauser,updadate,dutyparagraph,businesslicense,bankcard from sys_user
 		<where>
 			<if test="username!=null">
 				username=#{username} and password=#{password}
@@ -56,36 +56,43 @@
 		resultType="java.util.HashMap">
 		select id,phone from sys_user
 		<where>
-			<if test="id==0">phone=#{phone}
+			<if test="id==0">phone=#{phone} 
 			</if>
 			<if test="id!=0">phone=#{phone} and id!=#{id}
-			</if>
+            </if>
 		</where>
 	</select>
 
 
-	<!-- 查询用户订单信息 -->
+<!-- 查询用户所以订单信息 -->
 	<select id="thequery_show" parameterType="int"
 		resultType="java.util.HashMap">
-		select
-		orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks
-		from
-		order_info
+ select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks from
+ order_info
 		where
 		userid=#{userid}
 	</select>
+	
 
-	<!-- 查询用户订单信息 -->
+<!-- 查询用户订单信息 -->
 	<select id="thequery_theorder" parameterType="int"
 		resultType="java.util.HashMap">
-		select
-		orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks,userid
-		from
-		order_info
-		<where>
+ select orderid,num,pay_price,ordertime,pay_type,status,paytime,back_order,delivertime,remarks,userid from
+ order_info
+			<where>
 			<if test="userid!=null">
-				orderid=#{orderid} and userid=#{userid}
+			 orderid=#{orderid} and userid=#{userid} 
 			</if>
 		</where>
+	</select>
+	
+	<!-- 查询用户信息方法 -->
+	<select id="userinfo_sysuser" parameterType="int"
+		resultType="java.util.HashMap">
+ 	select
+		id,username,password,phone,dutyparagraph,email,birthday,address,businesslicense,bankcard,createdate,remarks
+	 from sys_user
+		where
+		id=#{id}
 	</select>
 </mapper>

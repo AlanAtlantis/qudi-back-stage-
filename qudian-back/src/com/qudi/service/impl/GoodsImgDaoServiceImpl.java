@@ -50,11 +50,11 @@ public class GoodsImgDaoServiceImpl implements GoodsImgDaoService {
 		MessageUtil message = new MessageUtil();
 
 		if (goodsId > 0) {
-			// æŸ¥è¯¢å•†å“å›¾ç‰‡
+			// ²éÑ¯ÉÌÆ·Í¼Æ¬
 			List<GoodsImg> list = goodsImgDao.selectGoodsImg(goodsId);
 
 			System.out.println("----------------->>>>>----->>>" + list);
-			// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®
+
 			if (list.size() > 0) {
 				message.setObject(list);
 				message.setResult(Result.SUCCEED);
@@ -106,7 +106,7 @@ public class GoodsImgDaoServiceImpl implements GoodsImgDaoService {
 		MessageUtil message = new MessageUtil();
 		if (picId > 0) {
 
-			// ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½Ş¸Ä³É¹ï¿½
+			// ÅĞ¶ÏÊÇ·ñĞŞ¸Ä³É¹¦
 			if (goodsImgDao.updateMian(isMain, picId) > 0) {
 				message.setInfo("Modify the success");
 				message.setResult(Result.SUCCEED);
@@ -131,6 +131,7 @@ public class GoodsImgDaoServiceImpl implements GoodsImgDaoService {
 			}
 
 			System.out.println("------------------->>>>>----" + picId);
+			// ÅĞ¶ÏÊÇ·ñ²éÑ¯³É¹¦
 
 			message.setInfo("The query is successful");
 			message.setResult(Result.SUCCEED);

@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.ui.Model;
 
+import com.cw.common.util.Page;
 import com.qudi.bean.SysUser;
 
 /**
@@ -79,4 +82,10 @@ public interface SysUserDao {
 	List<HashMap>  thequery_theorder(@Param("orderid") String orderid,@Param("userid") int userid);
 
 
+	/**
+	 * 显示用户信息
+	 * @param id
+	 * @return
+	 */
+	List<HashMap>	userinfo_sysuser(@Param("id") int id);
 }

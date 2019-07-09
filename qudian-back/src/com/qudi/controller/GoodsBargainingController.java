@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.qudi.bean.SysUser;
 import com.qudi.service.GoodsBargainingDaoService;
 import com.qudi.service.GoodsListDaoService;
-import com.qudi.util.MessageUtil;
-import com.qudi.util.Result;
 
 /**
  * 
@@ -31,14 +29,9 @@ public class GoodsBargainingController {
 
 	@RequestMapping(value = "/queryBar", method = RequestMethod.GET)
 	public String queryBar(Model model, @RequestParam("goodsId") int goodsId) {
-		// æŸ¥è¯¢ä¿¡æ¯
-		MessageUtil message = goodsBargainingDaoService.queryBar(goodsId);
 
-		if (message.getResult() == Result.SUCCEED) {
-			model.addAttribute("message", message);
-		} else {
-			model.addAttribute("error", "è®®ä»·æŸ¥è¯¢å¤±è´¥");
-		}
+		// µ÷ÓÃ²éÑ¯Òé¼Ûservice²ã
+		model.addAttribute("message", goodsBargainingDaoService.queryBar(goodsId));
 
 		return "bargainingTables";
 	}
@@ -46,22 +39,17 @@ public class GoodsBargainingController {
 	@RequestMapping(value = "/updatebar", method = RequestMethod.GET)
 	public String updatebar(Model model, @RequestParam("bargainingStatus") int bargainingStatus,
 			@RequestParam("bargainingId") int bargainingId, @RequestParam("goodsId") int goodsId) {
-		// ä¿®æ”¹è®®ä»·çŠ¶æ€
-		MessageUtil message = goodsBargainingDaoService.updatebar(bargainingStatus, bargainingId);
-		if (message.getResult() == Result.SUCCEED) {
 
-			model.addAttribute("update", message);
-		} else {
-			model.addAttribute("error", "æœåŠ¡å™¨å†…éƒ¨é”™è¯¯");
-		}
-		// æŸ¥è¯¢è®®ä»·
+		// µ÷ÓÃÒé¼ÛĞŞ¸Äservice²ã
+		model.addAttribute("update", goodsBargainingDaoService.updatebar(bargainingStatus, bargainingId));
+		// µ÷ÓÃ²éÑ¯Òé¼Ûservice²ã
 		model.addAttribute("message", goodsBargainingDaoService.queryBar(goodsId));
 
 		return "bargainingTables";
 	}
 
 	/**
-	 *
+	 * ²éÑ¯¿â´æÉÌÆ·
 	 * 
 	 * @param model
 	 * @param bargainingStatus
@@ -70,18 +58,13 @@ public class GoodsBargainingController {
 	 */
 	@RequestMapping(value = "/inventory", method = RequestMethod.GET)
 	public String inventory(Model model, HttpServletRequest request) {
-		// è·å–ç”¨æˆ·ä¿¡æ¯
+		// »ñÈ¡ÓÃ»§ĞÅÏ¢
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		// è·å–ç”¨æˆ·id
-		int userId = user.getId();
+		// Ö¸¶¨ÓÃ»§id
+		int userId =1 /*user.getId()*/;
 
-		MessageUtil message = goodsListDaoService.goodsCategory(userId);
-
-		if (message.getResult() == Result.SUCCEED) {
-			model.addAttribute("message", message);
-		} else {
-			model.addAttribute("error", "å‘ç”Ÿé”™è¯¯ï¼Œè¯·é‡è¯•");
-		}
+		// µ÷ÓÃ¿â´æ²éÑ¯·½·¨service²ã
+		model.addAttribute("message", goodsListDaoService.goodsCategory(userId));
 
 		return "bargaining";
 	}

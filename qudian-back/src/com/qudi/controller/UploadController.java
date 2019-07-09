@@ -46,23 +46,23 @@ public class UploadController {
 	@RequestMapping("springUpload")
 	public String springUpload(HttpServletRequest request) throws IllegalStateException, IOException {
 		// long startTime = System.currentTimeMillis();
-		// ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ CommonsMutipartResolver ï¿½ï¿½ï¿½à²¿ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ½«µ±Ç°ÉÏÏÂÎÄ³õÊ¼»¯¸ø CommonsMutipartResolver £¨¶à²¿·Ö½âÎöÆ÷£©
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 				request.getSession().getServletContext());
-		// ï¿½ï¿½ï¿½formï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½enctype="multipart/form-data"
+		// ¼ì²éformÖÐÊÇ·ñÓÐenctype="multipart/form-data"
 		if (multipartResolver.isMultipart(request)) {
-			// ï¿½ï¿½requestï¿½ï¿½É¶à²¿ï¿½ï¿½request
+			// ½«request±ä³É¶à²¿·Örequest
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			// ï¿½ï¿½È¡multiRequest ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+			// »ñÈ¡multiRequest ÖÐËùÓÐµÄÎÄ¼þÃû
 			Iterator iter = multiRequest.getFileNames();
 
 			while (iter.hasNext()) {
-				// Ò»ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+				// Ò»´Î±éÀúËùÓÐÎÄ¼þ
 				MultipartFile file = multiRequest.getFile(iter.next().toString());
 				System.out.println("---------->>>>>>>>>>>>>>---------->>>------------>>>>>" + file.getName());
 				if (file != null) {
 					String path = "G:/temp-rainy" + file.getOriginalFilename();
-					// ï¿½Ï´ï¿½
+					// ÉÏ´«
 					file.transferTo(new File(path));
 				}
 			}
@@ -82,7 +82,7 @@ public class UploadController {
 		try {
 			String filePath = "uploadfiles";
 			String realPath = "G:/temp-rainy";
-			// ï¿½Ð¶ï¿½Â·ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò´´½ï¿½
+			// ÅÐ¶ÏÂ·¾¶ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò´´½¨
 			File dir = new File(realPath);
 			if (!dir.isDirectory())
 				dir.mkdir();
@@ -93,8 +93,8 @@ public class UploadController {
 				ServletFileUpload sfu = new ServletFileUpload(dff);
 				FileItemIterator fii = null;
 				fii = sfu.getItemIterator(request);
-				String title = ""; // Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
-				String url = ""; // Í¼Æ¬ï¿½ï¿½Ö·
+				String title = ""; // Í¼Æ¬±êÌâ
+				String url = ""; // Í¼Æ¬µØÖ·
 				String fileName = "";
 				String state = "SUCCESS";
 				String realFileName = "";
@@ -106,16 +106,16 @@ public class UploadController {
 							Pattern reg = Pattern.compile("[.]jpg|png|jpeg|gif$");
 							Matcher matcher = reg.matcher(fileName);
 							if (!matcher.find()) {
-								state = "ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½";
+								state = "ÎÄ¼þÀàÐÍ²»ÔÊÐí£¡";
 								break;
 							}
 							realFileName = new Date().getTime()
 									+ fileName.substring(fileName.lastIndexOf("."), fileName.length());
 							url = realPath + "\\" + realFileName;
-							BufferedInputStream in = new BufferedInputStream(fis.openStream());// ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+							BufferedInputStream in = new BufferedInputStream(fis.openStream());// »ñµÃÎÄ¼þÊäÈëÁ÷
 							FileOutputStream a = new FileOutputStream(new File(url));
 							BufferedOutputStream output = new BufferedOutputStream(a);
-							Streams.copy(in, output, true);// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä¼ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+							Streams.copy(in, output, true);// ¿ªÊ¼°ÑÎÄ¼þÐ´µ½ÄãÖ¸¶¨µÄÉÏ´«ÎÄ¼þ¼Ð
 						} else {
 							String fname = fis.getFieldName();
 
@@ -164,9 +164,9 @@ public class UploadController {
 	}
 
 	/**
-	 * ueditorä¸Šä¼ å›¾ç‰‡
+	 * ueditorÉÏ´«Í¼Æ¬µÄ·½·¨
 	 * 
-	 * @param upfile   
+	 * @param upfile   ÉÏ´«Í¼Æ¬µÄÎÄ¼þ
 	 * @param request
 	 * @param response
 	 * @return
@@ -177,14 +177,14 @@ public class UploadController {
 			HttpServletRequest request, HttpServletResponse response) {
 		Date date = new Date();
 		File file = new File(upfile.getOriginalFilename());
-		System.out.println("-------------------ï¿½Ù¶È¸ï¿½ï¿½Ä±ï¿½ï¿½Ï´ï¿½Í¼Æ¬" + file.getAbsolutePath() + "\t\t" + file.getPath());
+		System.out.println("-------------------°Ù¶È¸»ÎÄ±¾ÉÏ´«Í¼Æ¬" + file.getAbsolutePath() + "\t\t" + file.getPath());
 		// String upLoadPath = "\\upload\\file\\" + new
 		// SimpleDateFormat("yyyy\\MM\\").format(date);
 		// String upLoadPath = file.getAbsolutePath();
 		String upLoadPath = "/";
 		// String upLoadPath = upfile.getOriginalFilename();
 		// String path = upLoadPath;
-		// Í¼Æ¬ï¿½ï¿½×º
+		// Í¼Æ¬ºó×º
 		String last = upfile.getOriginalFilename().substring(upfile.getOriginalFilename().lastIndexOf("."),
 				upfile.getOriginalFilename().length());
 
@@ -199,9 +199,9 @@ public class UploadController {
 		try {
 			upfile.transferTo(fileT);
 		} catch (IllegalStateException e) {
-			System.out.println("");
+			System.out.println("¸»ÎÄ±¾±à¼­Æ÷Í¼Æ¬ÉÏ´«Ê§°Ü£¬²ÎÊýÒì³£");
 		} catch (IOException e1) {
-			System.out.println("å›¾ç‰‡ä¸Šä¼ å¤±è´¥");
+			System.out.println("¸»ÎÄ±¾±à¼­Æ÷Í¼Æ¬ÉÏ´«Ê§°ÜioÒì³£");
 		}
 		System.out.println("--->>url:" + upLoadPath.replace("\\", "/") + fileName);
 		result.put("state", "SUCCESS");

@@ -4,4 +4,5 @@ encoding//WebContent/WEB-INF/jsp/index.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/insert1.jsp=UTF-8
 encoding//WebContent/thirdparts/ueditor/jsp/config.json=UTF-8
 encoding//src/com/qudi/controller/FileController.java=UTF-8
+encoding//src/com/qudi/controller/SysUserController.java=UTF-8
 encoding/<project>=UTF-8

@@ -1,7 +1,5 @@
 package com.qudi.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.qudi.bean.SysUser;
 import com.qudi.service.GoodsCategoryDaoService;
-import com.qudi.service.ShopDaoService;
 import com.qudi.util.MessageUtil;
-
 /**
  * 
  * @author AlanAtlantis
@@ -26,18 +21,11 @@ public class GoodsCategoryContr {
 
 	@Autowired
 	private GoodsCategoryDaoService goodsCategoryDaoService;
-	@Autowired
-	private ShopDaoService shopDaoService;
 
 	@RequestMapping(value = "/selectGoodsCategory", method = RequestMethod.GET)
-	public String selectGoodsCategory(Model model, HttpServletRequest request) {
+	public String selectGoodsCategory(Model model) {
 
 		model.addAttribute("object", goodsCategoryDaoService.selectGoodsCategory());
-
-		// 获取登录用户信息
-		SysUser user = (SysUser) request.getSession().getAttribute("user");
-
-		model.addAttribute("shop", shopDaoService.selectShopList(user.getId()));
 
 		return "insert1";
 	}
@@ -49,12 +37,11 @@ public class GoodsCategoryContr {
 	}
 
 	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage(Model model, @RequestParam("categoryId") int categoryId, @RequestParam("shopId") int shopId) {
+	public String addPage(Model model, @RequestParam("categoryId") int categoryId) {
 
-		System.out.println("categoryId-------->>>>>>>>" + categoryId + "\t\t\t" + shopId);
+		System.out.println("categoryId-------->>>>>>>>" + categoryId);
 
 		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("shopId", shopId);
 
 		return "insert";
 	}

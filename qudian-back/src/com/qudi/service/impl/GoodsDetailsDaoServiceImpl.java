@@ -36,7 +36,7 @@ public class GoodsDetailsDaoServiceImpl implements GoodsDetailsDaoService {
 	public MessageUtil querydetails(int goodsId) {
 		MessageUtil message = new MessageUtil();
 		if (goodsId > 0) {
-			// æŸ¥è¯¢å•†å“è¯¦æƒ…ä¿¡æ¯
+			// ²éÑ¯ÉÌÆ·ÃèÊö
 			List<GoodsDetails> list = goodsDetailsDao.querydetails(goodsId);
 			if (list.size() > 0) {
 				message.setInfo("The query is successful");

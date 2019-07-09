@@ -401,7 +401,6 @@
 											aria-describedby="emailHelp">
 									</div>
 									<input type="hidden" value="${categoryId }" name="categoryId">
-									<input type="hidden" value="${shopId }" name="shopId">
 									<div class="form-group">
 										<label for="name">标签</label> <input type="text"
 											class="form-control" name="goodsLabel"
